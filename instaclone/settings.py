@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Own
     'post',
+    'authuser',
     'crispy_forms'
 ]
 

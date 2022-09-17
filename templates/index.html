@@ -719,7 +719,7 @@
 
                     <div class="post__indicators"></div>
 
-                    <button class="post__button post__button--align-right">
+                    <a href="{% url 'favourite' post.id %}" class="post__button post__button--align-right">
                       <svg
                         width="24"
                         height="24"
@@ -734,7 +734,7 @@
                           stroke-width="0.7"
                         />
                       </svg>
-                    </button>
+                    </a>
                   </div>
 
                   <div class="post__infos">

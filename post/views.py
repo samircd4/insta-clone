@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 
 from post.models import Stream, Post, Follow, Tag, Likes
+from authuser.models import Profile
 from post.forms import NewPostForm
 
 from django.contrib.auth.decorators import login_required
@@ -69,4 +70,15 @@ def like(request, post_id):
         
     post.likes = current_likes
     post.save()
+    return HttpResponseRedirect(reverse('post-details', args=[post_id]))
+
+def favourite(request, post_id):
+    user = request.user
+    post = Post.objects.get(id=post_id)
+    profile = Profile.objects.get(user=user)
+
+    if profile.favourite.filter(id=post_id).exists():
+        profile.favourite.remove(post)
+    else:
+        profile.favourite.add(post)
     return HttpResponseRedirect(reverse('post-details', args=[post_id]))
