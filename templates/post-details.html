@@ -660,7 +660,7 @@
 
                 <div class="post__footer">
                   <div class="post__buttons">
-                    <button class="post__button">
+                    <a href="{% url 'post-like' post.id %}" class="post__button">
                       <svg
                         width="24"
                         height="24"
@@ -675,7 +675,7 @@
                           stroke-width="0.6"
                         />
                       </svg>
-                    </button>
+                    </a>
                     <button class="post__button">
                       <svg
                         width="24"

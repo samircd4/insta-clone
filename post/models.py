@@ -29,7 +29,7 @@ class Tag(models.Model):
         return super().save(*args, **kwargs)
 
 class Post(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     picture = models.ImageField(upload_to=user_directory_path, verbose_name='Picture', null=True)
     caption = models.CharField(max_length=1000, verbose_name='Caption')
     posted = models.DateTimeField(auto_now_add=True)
@@ -65,5 +65,9 @@ class Stream(models.Model):
         for follower in followers:
             stream = Stream(post=post, user=follower.follower, date=post.posted, following=user)
             stream.save()
+
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_likes')
 
 post_save.connect(Stream.add_post, sender=Post)

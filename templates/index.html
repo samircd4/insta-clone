@@ -640,7 +640,7 @@
                 </div>
 
                 <div class="post__content">
-                  <a href="{% url 'post-detail' post.id %}">
+                  <a href="{% url 'post-details' post.id %}">
                     <div class="post__medias">
                       <img
                       class="post__media" src="{{post.picture.url}}" alt="Post Content" 
@@ -664,7 +664,7 @@
 
                 <div class="post__footer">
                   <div class="post__buttons">
-                    <button class="post__button">
+                    <a href="{% url 'post-like' post.id %}" class="post__button">
                       <svg
                         width="24"
                         height="24"
@@ -679,7 +679,7 @@
                           stroke-width="0.6"
                         />
                       </svg>
-                    </button>
+                    </a>
                     <button class="post__button">
                       <svg
                         width="24"
